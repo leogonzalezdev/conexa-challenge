@@ -50,7 +50,7 @@ export const useInfiniteCharacters = (queryKey: string = 'default', search: stri
     isReachingEnd,
     loadMore: () => setSize(size + 1),
     isLoading: isLoadingInitial || isValidating,
-    hasNoResults: isEmpty && !isLoadingInitial && !isValidating,
+    hasNoResults: isEmpty && !isLoadingInitial && !isValidating && !error,
     error,
     mutate
   }

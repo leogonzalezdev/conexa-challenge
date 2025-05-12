@@ -71,7 +71,7 @@ const Card = ({ character, selected, onSelect }: Props) => {
             fill
             src={image}
             alt={name}
-            onLoadingComplete={() => setImageLoaded(true)}
+            onLoad={() => setImageLoaded(true)}
             className="h-full w-full object-cover transition-all duration-500 image-mask-fade"
           />
         </div>

@@ -28,8 +28,9 @@ describe('<Card />', () => {
     render(<Card character={characterMock} onSelect={jest.fn()} />)
 
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument()
-    expect(screen.getByText('Alive — Human')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /ver más/i })).toBeInTheDocument()
+    expect(screen.getByText('Alive')).toBeInTheDocument()
+    expect(screen.getByText('Human')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /view more/i })).toBeInTheDocument()
   })
 
   it('should call onSelect with character when clicked', () => {
