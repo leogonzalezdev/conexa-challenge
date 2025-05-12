@@ -10,7 +10,7 @@ import CharacterDetailModal from '../CharacterDetailModal'
 type Props = {
   character: Character,
   selected?: boolean,
-  onSelect: (id: Character) => void,
+  onSelect?: (id: Character) => void,
 }
 
 const getStatusColor = (status: string) => {
@@ -31,7 +31,9 @@ const Card = ({ character, selected, onSelect }: Props) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false);
 
-  const handleClick = () => onSelect(character)
+  const handleClick = () => {
+    if (onSelect) onSelect(character)
+  }
 
   const extractColor = debounce(async (src: string) => {
     const [r, g, b] = await prominent(src, { amount: 1 }) as [number, number, number]
@@ -53,7 +55,7 @@ const Card = ({ character, selected, onSelect }: Props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={
-        `relative w-full max-w-xs cursor-pointer rounded-3xl p-4 shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.01] backdrop-blur-2xl group ${selected ? 'bg-[#112E2B]' : 'bg-[#1a1a1a]'}`
+        `relative w-full max-w-xs ${onSelect ? 'cursor-pointer' : ''} rounded-3xl p-4 shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.01] backdrop-blur-2xl group ${selected ? 'bg-[#112E2B]' : 'bg-[#1a1a1a]'}`
       }
     >
       <div
@@ -88,8 +90,12 @@ const Card = ({ character, selected, onSelect }: Props) => {
         </p>
       </div>
       <button
-        onClick={() => setIsOpenDetail(true)}
-        className="relative z-10 mt-4 w-full rounded-xl border border-[#00B5CC]/30 bg-[#00B5CC]/10 px-4 py-2 text-sm font-medium text-[#00B5CC] transition hover:bg-[#00B5CC]/20 hover:text-white cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          setIsOpenDetail(true)
+        }}
+        className="relative z-20 mt-4 w-full rounded-xl border border-[#00B5CC]/30 bg-[#00B5CC]/10 px-4 py-2 text-sm font-medium text-[#00B5CC] transition hover:bg-[#00B5CC]/20 hover:text-white cursor-pointer"
       >
         View more
       </button>

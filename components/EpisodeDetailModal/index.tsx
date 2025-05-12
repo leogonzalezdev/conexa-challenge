@@ -52,7 +52,7 @@ const EpisodeDetailModal = ({ isOpen, onClose, title, episodeCode, characters, i
                       <CharacterSkeleton key={i} />
                     ))
                     : characters.map((char) => (
-                      <CharacterCard key={char.id} character={char} onSelect={() => { }} />
+                      <CharacterCard key={char.id} character={char} />
                     ))}
                 </div>
               </DialogPanel>

@@ -34,7 +34,7 @@ const CharactersList = ({ title, storeKey, selectedCharacter, onSelect }: Props)
 
   const handleSearch = debounce((value: string) => {
     setSearch(value.trim())
-  }, 600)
+  }, 900)
 
   const clearSearch = () => {
     setSearch('')
