@@ -80,12 +80,12 @@ const CharactersList = ({ title, storeKey, selectedCharacter, onSelect }: Props)
       <div className="flex-1 overflow-y-auto rounded-4xl max-h-[45vh] custom-scroll scroll-smooth z-10 pr-2">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-2 justify-center">
-          {characters.map((character, i) => (
+          {characters.map((character) => (
             <motion.div
               key={`${storeKey}-${character.id}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.02, ease: 'easeOut' }}
+              transition={{ duration: 0.04, ease: 'easeOut' }}
             >
               <CharacterCard
                 character={character}
